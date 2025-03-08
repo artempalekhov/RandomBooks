@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Request, Response
 from sqlalchemy import and_, func, select
 import uvicorn
 from app.books.models import *
-from app.database import Endpoints, SessionDep
+from app.database import SessionDep
 from fastapi.middleware.cors import CORSMiddleware
 from app.books.schemas import *
 from app.users.models import *
@@ -104,7 +104,6 @@ async def delete_user(user_id: int, session: SessionDep):
         await session.commit()
         return {"ok": True}
 
-#region CRUD books
 @app.post("/books/")
 async def add_book(data: BookAddSchema, session: SessionDep):
         new_book = BookModel(
