@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Случайная книга на вечер</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Случайная книга на вечер</h1>
+        <form id="genreForm">
+            <div class="form-group">
+                <label for="genre">Выберите жанр:</label>
+                <select id="genre" name="genre" required>
+                    <option value="Фантастика">Фантастика</option>
+                    <option value="Детектив">Детектив</option>
+                    <option value="Роман">Роман</option>
+                    <option value="Научная литература">Научная литература</option>
+                    <option value="Фэнтези">Фэнтези</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Получить книгу</button>
+        </form>
+
+        <div id="bookResult" class="book-result">
+            <!-- Здесь будет отображаться случайная книга -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('genreForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const genre = document.getElementById('genre').value;
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/random_book?genre=${genre}`);
+                const book = await response.json();
+
+                const bookResult = document.getElementById('bookResult');
+                bookResult.innerHTML = `
+                    <h2>${book.title}</h2>
+                    <p><strong>Автор:</strong> ${book.author}</p>
+                    <p><strong>Жанр:</strong> ${book.genre}</p>
+                    <p><strong>Описание:</strong> ${book.description}</p>
+                    <img src="${book.imgLink}" alt="Обложка книги" class="book-cover">
+                `;
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert('Не удалось получить книгу. Попробуйте снова.');
+            }
+        });
+    </script>
+</body>
+</html>

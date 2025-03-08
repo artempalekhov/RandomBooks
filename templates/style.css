@@ -1,0 +1,76 @@
+/* Общие стили */
+body {
+    background-color: #f0f0f0;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 400px;
+    margin: 0 auto; /* Центрируем контейнер */
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+select, input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+select:focus, input:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.btn {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.book-result {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.book-cover {
+    max-width: 200px; /* Уменьшаем ширину изображения */
+    height: auto; /* Сохраняем пропорции */
+    margin-top: 10px;
+    border: 1px solid #ccc; /* Добавляем рамку для красоты */
+}
+
+/* Фиксация формы вверху */
+.sticky-form {
+    position: sticky;
+    top: 0;
+    background-color: #ffffff; /* Фон, чтобы форма не сливалась с контентом */
+    z-index: 100; /* Убедимся, что форма поверх других элементов */
+    padding-bottom: 10px; /* Отступ снизу для разделения формы и контента */
+}
